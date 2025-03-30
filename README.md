@@ -8,10 +8,10 @@
 
 ## Security
 #### SCP
-We use SCP (Service control policies) to enable central administration over the permissions available within the accounts in our organization. All the policies are in this [folder](policies/SCP).
+I use SCP (Service control policies) to enable central administration over the permissions available within the accounts in our organization. All the policies are in this [folder](policies/SCP).
 
 #### User Management
-We use IAM Identity Center to manage our users.
+I use IAM Identity Center to manage our users.
 
 ## Resources This repo will deploy
   - VPC
@@ -32,19 +32,10 @@ We use IAM Identity Center to manage our users.
   - IAM User
     - (ecs-user)
 
-## Guides
-- [How to Add a New Application](doc/HowToAddNewApp.md)
-- Manual Deployment
-  - Follow this documentation for create [Record Route53](doc/HowToAddNewApp.md#create-route53-record-for-bind-domain-to-loadbalancer),
-  - Follow this documentation for create [Secret Manager](doc/HowToAddNewApp.md#create-secret-in-aws-secret-manager)
-  - Follow this documentation for create [ECR Repository](doc/HowToAddNewApp.md#create-image-repository-in-aws-ecr)
-  - To create ssl certificate follow this [ACM](https://docs.aws.amazon.com/acm/latest/userguide/gs-acm-request-public.html) documentation.
-  - To create KMS key follow this [KMS](https://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html) documentation.
-  - Follow this documentation for setup [CloudTrail & S3 (CloudTrail)](https://drive.google.com/file/d/1-CCB2OAh1qrCBdKBaNS3XcpO495noDxk/view?usp=share_link)
 
 ### Security Guides
 - [How to Setup Federated Authentication using Google Workspace and IAM Identity Center](https://aws.amazon.com/blogs/security/how-to-set-up-federated-single-sign-on-to-aws-using-google-workspace/)
-- [How to manage permissions in IAM Identity Center](https://www.wellarchitectedlabs.com/cost/100_labs/100_1_aws_account_setup/4_configure_sso/)
+- [How to manage permissions in IAM Identity Center](https://www.Illarchitectedlabs.com/cost/100_labs/100_1_aws_account_setup/4_configure_sso/)
 - [How To Bastion host is setup](https://www.strongdm.com/blog/bastion-hosts-with-audit-logging-part-one)
 - [Encrypting client connections to MySQL DB instances with SSL/TLS](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/mysql-ssl-connections.html)
 
@@ -53,9 +44,9 @@ TODO: Replace Bastion host with (Tailscale)
 - [Tailscale Terraform Fargate](https://blog.bossylobster.com/2022/08/tailscale-terraform-fargate.html)
 
 ### Sonarqube setup (Development)
-Based on this [sonarqube documentation](https://docs.sonarqube.org/latest/setup-and-upgrade/install-the-server/) we've used to deploy sonarqube using terraform to ECS cluster, and after its installed, this is the next step you must do.
+Based on this [sonarqube documentation](https://docs.sonarqube.org/latest/setup-and-upgrade/install-the-server/) I've used to deploy sonarqube using terraform to ECS cluster, and after its installed, this is the next step you must do.
 
-- go to installed sonarqube on this [url](https://dev-sq1125.test.com/) or to your specified domain, to setup initial user.
+- go to installed sonarqube to your specified domain, to setup initial user.
 - after setup initial user, login with that user.
 - start scanning your applications, the sonarqube ui will guide you. 
 
@@ -148,12 +139,8 @@ Run `./cleanupEnv.sh` to cleanup the env variables so they don't linger on syste
 
 # Notes
 ### RDS Public Read Replica
-In production we deploy a read replica of the cloud-infra database so that it can be read from Google Data Studio. Manual steps here: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_ReadRepl.html#USER_ReadRepl.Create
+In production I deploy a read replica of the cloud-infra database so that it can be read from Google Data Studio. Manual steps here: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_ReadRepl.html#USER_ReadRepl.Create
 
-### Task Definition
-- Dont worry about changing task-definitions will rewrite image name, because it already ignore when the task-definitions externally updated by gh actions or any manual actions.
-- Why in application repo like `cloud-infra` has `task-definitions` and in this repo has it to. because the `task-definitions` in application repo is exported version of this repo, and how to export the `task-definitions` can be accessed on this [doc](doc/HowToAddNewApp.md)
-- In sonarqube task definitions you can see we set `sonarqube_nfs_accesspoint_id` manually by setting in variables.tf, but its not fully manual, because the nfs already created by terraform but cant get the `access point id`, so if nfs successfully created, we must update the variables manually in variables.tf
 # CloudForgestructure Deployment with Terraform
 
 This repository showcases my ability to deploy and manage CloudForgestructure using Terraform. It leverages various AWS services to create a robust and scalable environment for running applications.
@@ -192,4 +179,4 @@ The `cleanupEnv.sh` script is provided for easy removal of the deployed resource
 - `outputs.tf`: Defines output variables.
 - `*.tf`: Other files define specific resources and configurations.
 
-This repository demonstrates my ability to design, deploy, and manage CloudForgestructure using Terraform effectively.
+This repository demonstrates my ability to design, deploy, and manage Cloud infrastructure structure using Terraform effectively.
