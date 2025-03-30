@@ -1,0 +1,55 @@
+[
+  {
+      "name": "sonarqube",
+      "image": "088074866799.dkr.ecr.ap-southeast-1.amazonaws.com/sonarqube:community",
+      "cpu": 0,
+      "portMappings": [
+          {
+              "containerPort": 9000,
+              "hostPort": 9000,
+              "protocol": "tcp"
+          }
+      ],
+      "ulimits": [
+        {
+          "name": "nofile",
+          "softLimit": 65535,
+          "hardLimit": 65535
+        }
+      ],
+      "command": [
+        "-Dsonar.search.javaAdditionalOpts=-Dnode.store.allow_mmap=false"
+      ],
+      "essential": true,
+      "entryPoint": [],
+      "environment": [
+        { "name": "SONAR_JDBC_URL", "value": "jdbc:postgresql://sonarqube.ck2hspxjvmj7.ap-southeast-1.rds.amazonaws.com:5432/sonarqube" },
+        { "name": "SONAR_JDBC_USERNAME", "value": "sonarqube" },
+        { "name": "SONAR_JDBC_PASSWORD", "value": "yLXwXyMimh4uzVP8g7CON9ypUpouR1pBTV9jvqaA" }
+      ],
+      "mountPoints": [
+          {
+              "sourceVolume": "data",
+              "containerPath": "/opt/sonarqube/data"
+          },
+          {
+              "sourceVolume": "data",
+              "containerPath": "/opt/sonarqube/logs"
+          },
+          {
+              "sourceVolume": "data",
+              "containerPath": "/opt/sonarqube/extensions"
+          }
+      ],
+      "volumesFrom": [],
+      "logConfiguration": {
+          "logDriver": "awslogs",
+          "options": {
+              "awslogs-create-group": "true",
+              "awslogs-group": "/ecs/sonarqube",
+              "awslogs-region": "ap-southeast-1",
+              "awslogs-stream-prefix": "ecs"
+          }
+      }
+  }
+]

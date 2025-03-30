@@ -1,0 +1,25 @@
+[
+  {
+      "name": "cloud-infra",
+      "image": "088074866799.dkr.ecr.ap-southeast-1.amazonaws.com/cloud-infra:dev",
+      "cpu": 0,
+      "portMappings": [
+          {
+              "containerPort": 14022,
+              "hostPort": 14022,
+              "protocol": "tcp"
+          }
+      ],
+      "essential": true,
+      "entryPoint": [],
+      "logConfiguration": {
+          "logDriver": "awslogs",
+          "options": {
+              "awslogs-create-group": "true",
+              "awslogs-group": "/ecs/cloud-infra",
+              "awslogs-region": "ap-southeast-1",
+              "awslogs-stream-prefix": "ecs"
+          }
+      }
+  }
+]

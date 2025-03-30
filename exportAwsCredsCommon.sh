@@ -1,0 +1,4 @@
+#!/bin/bash
+export TF_VAR_aws_access_key_common=$AWS_ACCESS_KEY_ID
+export TF_VAR_aws_secret_key_common=$AWS_SECRET_ACCESS_KEY
+export TF_VAR_aws_session_token_common=$AWS_SESSION_TOKEN
